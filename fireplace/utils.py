@@ -244,14 +244,9 @@ def play_turn(game):
 			# sort the dict higher cost to lower cost
 			cost_card_dict = create_cost_dict(player.hand)
 			cost_card_sorted = sorted(cost_card_dict, reverse=True)
-			print(cost_card_dict)
 			hand_sorted = get_cards_dict(cost_card_sorted, cost_card_dict)
-			print(hand_sorted)
 
 			for card in hand_sorted:
-				print(card)
-				print(type(card))
-				#card = cost_card_dict[cost]
 				if card.is_playable():
 					target = None
 					if card.must_choose_one:
