@@ -4,7 +4,8 @@
 [![codecov.io](https://codecov.io/github/jleclanche/fireplace/coverage.svg?branch=master)](https://codecov.io/github/jleclanche/fireplace)
 
 A Hearthstone simulator and implementation, written in Python.
-
+This repo has the objective to create a functional AI framework for educational purposes.
+This repo is still in it's first developments stages.
 
 ## Requirements
 
@@ -12,9 +13,11 @@ A Hearthstone simulator and implementation, written in Python.
 
 
 ## Installation
-
+First get inside AI_HearthstoneSimulator folder then:
 * `pip install .`
 
+To check installation and run a random game in the simulator go to tests folder and run
+* `python full_game.py`
 
 ## Documentation
 
