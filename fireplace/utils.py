@@ -174,8 +174,6 @@ def setup_game():
 	from .player import Player
 	from .decks import get_classic_mage
 
-	#deck1 = random_draft(CardClass.MAGE)
-	#deck2 = random_draft(CardClass.MAGE)
 	deck1 = get_classic_mage()
 	deck2 = get_classic_mage()
 	player1 = Player("Player1", deck1, CardClass.MAGE.default_hero)
