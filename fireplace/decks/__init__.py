@@ -1,0 +1,1 @@
+from .classic_mage import get_classic_mage

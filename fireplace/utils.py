@@ -172,10 +172,13 @@ def weighted_card_choice(source, weights: List[int], card_sets: List[str], count
 def setup_game():
 	from .game import Game
 	from .player import Player
+	from .decks import get_classic_mage
 
-	deck1 = random_draft(CardClass.PALADIN)
-	deck2 = random_draft(CardClass.MAGE)
-	player1 = Player("Player1", deck1, CardClass.PALADIN.default_hero)
+	#deck1 = random_draft(CardClass.MAGE)
+	#deck2 = random_draft(CardClass.MAGE)
+	deck1 = get_classic_mage()
+	deck2 = get_classic_mage()
+	player1 = Player("Player1", deck1, CardClass.MAGE.default_hero)
 	player2 = Player("Player2", deck2, CardClass.MAGE.default_hero)
 
 	print(player1.hero)

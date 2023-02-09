@@ -260,7 +260,7 @@ class BaseGame(Entity):
 		self.tick += 1
 
 	def setup(self):
-		self.log("Setting up game GUITARRA %r", self)
+		self.log("Setting up game %r", self)
 		self.state = State.RUNNING
 		self.step = Step.BEGIN_DRAW
 		self.zone = Zone.PLAY

@@ -24,6 +24,12 @@ To check installation and run a random game in the simulator go to tests folder 
 The [Fireplace Wiki](https://github.com/jleclanche/fireplace/wiki) is the best
 source of documentation, along with the actual code.
 
+## Files Changed from the original Repo
+I have add changes or created to the following files: 
+* full_game.py (./tests)
+* utils.py (./fireplace)
+* game.py (./fireplace)
+* decks folder (./fireplace)
 
 ## License
 
