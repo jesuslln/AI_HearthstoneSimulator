@@ -189,87 +189,17 @@ def setup_game():
 
 
 def play_turn(game):
+	from .bots_AI.random_bot import random_bot
+	from .bots_AI.simple_bot import simple_bot
 	player = game.current_player
 
 	if (str(player) == "Player1"):
 		print("Player1 turn")
+		random_bot.play_next_turn(random_bot , game, player)
 
-		while True:
-			heropower = player.hero.power
-			if heropower.is_usable() and random.random() < 0.1:
-				if heropower.requires_target():
-					heropower.use(target=random.choice(heropower.targets))
-				else:
-					heropower.use()
-				continue
-
-			# iterate over our hand and play whatever is playable
-			for card in player.hand:
-				if card.is_playable() and random.random() < 0.5:
-					target = None
-					if card.must_choose_one:
-						card = random.choice(card.choose_cards)
-					if card.requires_target():
-						target = random.choice(card.targets)
-					print("Playing %r on %r" % (card, target))
-					card.play(target=target)
-
-					if player.choice:
-						choice = random.choice(player.choice.cards)
-						print("Choosing card %r" % (choice))
-						player.choice.choose(choice)
-
-					continue
-
-			# Randomly attack with whatever can attack
-			for character in player.characters:
-				if character.can_attack():
-					character.attack(random.choice(character.targets))
-
-			break
 	else:
-
 		print("Player2 turn")
-
-		while True:
-			heropower = player.hero.power
-			if heropower.is_usable() and random.random() < 0.1:
-				if heropower.requires_target():
-					heropower.use(target=random.choice(heropower.targets))
-				else:
-					heropower.use()
-				continue
-
-				# iterate over our hand and play whatever is playable
-
-			# sort the dict higher cost to lower cost
-			cost_card_dict = create_cost_dict(player.hand)
-			cost_card_sorted = sorted(cost_card_dict, reverse=True)
-			hand_sorted = get_cards_dict(cost_card_sorted, cost_card_dict)
-
-			for card in hand_sorted:
-				if card.is_playable():
-					target = None
-					if card.must_choose_one:
-						card = random.choice(card.choose_cards)
-					if card.requires_target():
-						target = random.choice(card.targets)
-					print("Playing %r on %r" % (card, target))
-					card.play(target=target)
-
-					if player.choice:
-						choice = random.choice(player.choice.cards)
-						print("Choosing card %r" % (choice))
-						player.choice.choose(choice)
-
-					continue
-
-			# Randomly attack with whatever can attack
-			for character in player.characters:
-				if character.can_attack():
-					character.attack(random.choice(character.targets))
-
-			break
+		simple_bot.play_next_turn(simple_bot, game, player)
 
 	game.end_turn()
 	return game
@@ -289,31 +219,3 @@ def play_full_game():
 		print("")
 
 	return game
-
-
-# This function creates a dict with cost as keys and cards as values
-def create_cost_dict(hand):
-	hand_cost = {}
-
-	for card in hand:
-		if card.cost in hand_cost:
-			hand_cost[card.cost].append(card)
-		else:
-			hand_cost[card.cost] = []
-			hand_cost[card.cost].append(card)
-
-	return hand_cost
-
-
-def get_cards_dict(keys, dict):
-	hand_sorted = []
-	for key in keys:
-		cards = dict[key]
-
-		if type(cards) == list:
-			for c in cards:
-				hand_sorted.append(c)
-		else:
-			hand_sorted.append(cards)
-
-	return hand_sorted
